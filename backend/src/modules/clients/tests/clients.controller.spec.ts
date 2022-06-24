@@ -20,6 +20,7 @@ describe('ClientsController', () => {
 
     controller = module.get<ClientsController>(ClientsController);
     service = module.get<ClientsService>(ClientsService);
+    jest.clearAllMocks();
   });
 
   it('should be defined', () => {

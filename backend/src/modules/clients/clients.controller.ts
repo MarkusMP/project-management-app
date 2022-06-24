@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseUUIDPipe,
   Patch,
   Post,
 } from '@nestjs/common';
@@ -22,7 +23,7 @@ export class ClientsController {
 
   @Patch(':id')
   updateClient(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() dto: UpdateClientDto,
   ): Promise<Client> {
     return this.clientsService.updateClient(id, dto);
@@ -34,7 +35,9 @@ export class ClientsController {
   }
 
   @Delete(':id')
-  deleteClient(@Param('id') id: string): Promise<{ message: string }> {
+  deleteClient(
+    @Param('id', ParseUUIDPipe) id: string,
+  ): Promise<{ message: string }> {
     return this.clientsService.deleteClient(id);
   }
 }
