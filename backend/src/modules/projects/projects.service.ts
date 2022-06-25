@@ -76,4 +76,12 @@ export class ProjectsService {
 
     return { message: 'Successfully deleted project' };
   }
+
+  async getProject(id: string): Promise<Project> {
+    return await this.projectRepository.findOne({
+      where: {
+        id,
+      },
+    });
+  }
 }

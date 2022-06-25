@@ -116,4 +116,21 @@ describe('ClientsController', () => {
       });
     });
   });
+
+  describe('getClient', () => {
+    describe('when getClient is called', () => {
+      let client: Client;
+      beforeEach(async () => {
+        client = await controller.getClient(clientStub().id);
+      });
+
+      test('then it should call client service', () => {
+        expect(service.getClient).toHaveBeenCalled();
+      });
+
+      test('then it should return the clients', () => {
+        expect(client).toEqual(clientStub());
+      });
+    });
+  });
 });

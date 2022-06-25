@@ -125,4 +125,21 @@ describe('ProjectsController', () => {
       });
     });
   });
+
+  describe('getProject', () => {
+    describe('when getProjects is called', () => {
+      let project: any;
+      beforeEach(async () => {
+        project = await controller.getProject(projectStub().id);
+      });
+
+      test('then it should call project service', () => {
+        expect(service.getProject).toHaveBeenCalled();
+      });
+
+      test('then it should return the projects', () => {
+        expect(project).toEqual(projectStub());
+      });
+    });
+  });
 });

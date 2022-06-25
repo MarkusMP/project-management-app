@@ -66,6 +66,17 @@ describe('ClientsController (e2e)', () => {
       expect(res.body[0].phone).toBe(clientStub().phone);
     });
   });
+  describe('getClient', () => {
+    test('then it should request getClient', async () => {
+      const res = await request(httpServer).get(`/clients/${id}`);
+
+      expect(res.status).toBe(200);
+
+      expect(res.body.email).toBe(clientStub().email);
+      expect(res.body.name).toBe(clientStubTwo().name);
+      expect(res.body.phone).toBe(clientStub().phone);
+    });
+  });
   describe('deleteClient', () => {
     test('then it should request deleteClient', async () => {
       const res = await request(httpServer).delete(`/clients/${id}`);

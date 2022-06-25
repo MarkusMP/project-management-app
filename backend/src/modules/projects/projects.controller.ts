@@ -43,4 +43,9 @@ export class ProjectsController {
   ): Promise<{ message: string }> {
     return this.projectsService.deleteProject(id);
   }
+
+  @Get(':id')
+  getProject(@Param('id', ParseUUIDPipe) id: string): Promise<Project> {
+    return this.projectsService.getProject(id);
+  }
 }

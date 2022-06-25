@@ -77,6 +77,17 @@ describe('ProjectsController (e2e)', () => {
     });
   });
 
+  describe('getProject', () => {
+    test('then it should request getProject', async () => {
+      const res = await request(httpServer).get(`/projects/${id}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body.status).toBe('Completed');
+      expect(res.body.name).toBe(projectStub().name);
+      expect(res.body.description).toBe(projectStub().description);
+    });
+  });
+
   describe('deleteProject', () => {
     test('then it should request delteProject', async () => {
       const res = await request(httpServer).delete(`/projects/${id}`);

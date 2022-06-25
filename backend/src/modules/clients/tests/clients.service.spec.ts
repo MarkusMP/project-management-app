@@ -147,4 +147,25 @@ describe('ClientsService', () => {
       });
     });
   });
+
+  describe('getClient', () => {
+    describe('when getClient is called', () => {
+      let client: Client;
+      beforeEach(async () => {
+        jest
+          .spyOn(repository, 'findOne')
+          .mockImplementation(async () => clientStub());
+
+        client = await service.getClient(clientStub().id);
+      });
+
+      test('then it should call findOne', () => {
+        expect(repository.findOne).toHaveBeenCalled();
+      });
+
+      test('then it should return client', () => {
+        expect(client).toEqual(clientStub());
+      });
+    });
+  });
 });

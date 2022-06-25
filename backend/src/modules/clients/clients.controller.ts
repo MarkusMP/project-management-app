@@ -40,4 +40,9 @@ export class ClientsController {
   ): Promise<{ message: string }> {
     return this.clientsService.deleteClient(id);
   }
+
+  @Get(':id')
+  getClient(@Param('id', ParseUUIDPipe) id: string): Promise<Client> {
+    return this.clientsService.getClient(id);
+  }
 }

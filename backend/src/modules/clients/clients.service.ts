@@ -84,4 +84,12 @@ export class ClientsService {
 
     return { message: 'Successfully deleted client' };
   }
+
+  async getClient(id: string): Promise<Client> {
+    return await this.clientRepository.findOne({
+      where: {
+        id,
+      },
+    });
+  }
 }

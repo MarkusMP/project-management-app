@@ -179,4 +179,26 @@ describe('ProjectsService', () => {
       expect(msg).toEqual({ message: 'Successfully deleted project' });
     });
   });
+
+  describe('getProject', () => {
+    describe('when getProject is called', () => {
+      let project: Project;
+
+      beforeEach(async () => {
+        jest
+          .spyOn(repositoryProject, 'findOne')
+          .mockImplementation(async () => projectStub());
+
+        project = await service.getProject(projectStub().id);
+      });
+
+      test('then it should call find', () => {
+        expect(repositoryProject.findOne).toHaveBeenCalled();
+      });
+
+      test('then it should return projects', () => {
+        expect(project).toEqual(projectStub());
+      });
+    });
+  });
 });
